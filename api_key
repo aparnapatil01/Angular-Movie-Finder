@@ -1,0 +1,8 @@
+4b4380db9272ac9e2c0658312992cb57
+
+Example - 
+https://api.themoviedb.org/3/movie/550?api_key=4b4380db9272ac9e2c0658312992cb57
+
+--Top Rated--
+https://api.themoviedb.org/3/movie/top_rated?api_key=4b4380db9272ac9e2c0658312992cb57
+

@@ -1,0 +1,31 @@
+<div class="jumbotron">
+	<p>Search for a movie using the form below</p>
+	<form>
+		<div class="form-group">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search for movies" [(ngModel)]="searchStr" (keyup.enter)="searchMovies()" name="searchStr">
+				<span class="input-group-btn">
+					<button class="btn btn-primary" (click)="searchMovies()">Go!</button>
+				</span>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div *ngIf="searchRes">
+	<h3 class="orange-text">Search Results</h3>
+	<div class="row is-flex">
+		<div class="col-md-4" *ngFor="let movie of searchRes">
+			<movie-card [movie]="movie"></movie-card>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="upcoming">
+	<h3>Upcoming Movies</h3>
+	<div class="row is-flex">
+		<div class="col-md-3" *ngFor="let movie of upcoming">
+			<movie-card [movie]="movie"></movie-card>
+		</div>
+	</div>
+</div>

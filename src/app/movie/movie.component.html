@@ -1,0 +1,68 @@
+<div class="row" *ngIf="movie">
+	<div class="col-md-4">
+		<img class="thumbnail" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="">
+		<p>
+			<a href="{{movie.homrpage}}" class="btn btn-info btn-block" target="_blank">Visit Movies Website</a>
+		</p>
+	</div>
+	<div class="col-md-8">
+		<h2>{{movie.title}}
+			<small class="label label-warning">
+				{{movie.vote_average}}
+				<i class="glyphicon glyphicon-star"></i>
+			</small>
+		</h2>
+		<p>{{movie.tagline}}</p>
+		<p>
+			<a routerLink="/genre/{{genre.id}}/{{genre.name}}" class="label label-info" *ngFor="let genre of movie.genres">{{genre.name}}</a>
+		</p>
+		<h3>Overview</h3>
+		<p>{{movie.overview}}</p>
+
+		<div class="row is-flex" *ngIf="cast && cast.length > 0">
+			<div class="col-md-12">
+				<h3 class="text-center">Cast</h3>
+			</div>
+			<div class="col-md-3" *ngFor="let actor of cast">
+				<div class="thumbnail">
+					<img src="https://image.tmdb.org/t/p/w300/{{actor.profile_path}}" alt="">
+					<div class="caption">
+						<h6 class="text-center"><a routerLink="/person/{{actor.id}}">{{actor.name}}</a></h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Trailer -->
+<div class="row" *ngIf="video">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>{{video.name}}</h2>
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" [src]="video.url" frameborder="0"></iframe>
+		</div>
+	</div>
+</div>
+
+<!-- Similar Movies -->
+<div class="row is-flex" *ngIf="similarMovies">
+	<div class="col-md-12">
+		<h2>Similar Movies</h2>
+	</div>
+	<div class="col-md-2" *ngFor="let movie of similarMovies">
+		<movie-card [movie]="movie"></movie-card>
+	</div>
+</div>
+
+<!-- Reviews -->
+<div class="row" *ngIf="reviews">
+	<div class="col-md-12">
+		<h2>Reviews</h2>
+	</div>
+	<div class="col-md-6" *ngFor="let review of reviews">
+		<blockquote>
+			<p class="text-justify">{{review.content}}</p>
+			<footer><cite><a href="{{review.url}}">{{review.author}}</a></cite></footer>
+		</blockquote>
+	</div>
+</div>

@@ -1,0 +1,71 @@
+<div class="row is-flex" *ngIf="serie">
+	<div class="col-md-4">
+		<img class="thumbnail" src="https://image.tmdb.org/t/p/w300/{{serie.poster_path}}" alt="">
+		<p>
+			<a href="{{serie.homepage}}" target="_blank" class="btn btn-block btn-info">Visit Movies Website</a>
+		</p>
+	</div>
+
+	<div class="col-md-8">
+		<h2>{{serie.name}}
+			<small class="label label-warning">{{serie.popularity}}
+				<i class="glyphicon glyphicon-star"></i>
+			</small>
+		</h2>
+		<p>{{serie.status}}</p>
+		<p>
+			<strong>Last Air Date: </strong> {{serie.last_air_date}}
+		</p>
+		<p>
+			<strong>Number Of Seasons: </strong> {{serie.number_of_seasons}}
+		</p>
+		<p>
+			<strong>Number Of Episodes: </strong> {{serie.number_of_episodes}}
+		</p>
+		<p>
+			<strong>Production Companies: </strong> 
+			<small class="label label-danger" *ngFor="let item of serie.production_companies">{{item.name}}</small>
+		</p>
+		<p>
+			<a class="label label-info" routerLink="/genre/{{genre.id}}/{{genre.name}}" *ngFor="let genre of serie.genres">
+				{{genre.name}}
+			</a>
+		</p>
+		<h3>Overview</h3>
+		<p>{{serie.overview}}</p>
+		<div class="row" *ngIf="video">
+			<div class="col-md-8 col-md-offset-2">
+				<h3>{{video.name}}</h3>
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" [src]="video.url" frameborder="0"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="serie">
+	<div class="row is-flex">
+		<div class="col-md-12">
+			<h3>Seasons</h3>
+		</div>
+		<div class="col-md-2" *ngFor="let season of serie.seasons">
+			<div class="thumbnail">
+				<img src="https://image.tmdb.org/t/p/w300/{{season.poster_path}}" alt="">
+				<div class="caption">
+					<h4 class="text-ellipsis">
+						<a>Season {{season.season_number}} <small>({{season.episode_count}} Episodes)</small></a>
+					</h4>
+					<p><strong>Air Date: </strong>{{season.air_date}}</p>
+					<p>
+						<a>View details &raquo;</a>
+						<small class="label label-success pull-right">
+							{{serie.vote_average}}
+							<i class="glyphicon glyphicon-star"></i>
+						</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
